@@ -148,8 +148,8 @@ var github_user_starred_resume = function(username, page) {
 
 var run = function() {
     var itemCount = 0,
-        maxItems = 5,
-        maxLanguages = 9,
+        maxItems = 10,
+        maxLanguages = 10,
         starred = github_user_starred_resume(username);
 
     if (!starred || starred === 'api_limit' || starred === 'not_found') {
