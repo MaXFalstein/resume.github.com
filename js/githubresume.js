@@ -171,7 +171,7 @@ var run = function() {
                     $('#resume').html(data);
                 }
             });
-        } else {
+        }/* else {
             $.ajax({
                 url: 'views/opt_out.html',
                 dataType: 'html',
@@ -180,7 +180,7 @@ var run = function() {
                     $('#resume').html(data);
                 }
             });
-        }
+        }*/
         return;
     }
 
