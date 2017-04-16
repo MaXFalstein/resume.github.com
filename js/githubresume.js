@@ -1,6 +1,7 @@
 var urlParams = {};
 var username;
-var trackerId = 'UA-21222559-1';
+// var trackerId = 'UA-21222559-1'; // resume.github.com or resume.github.io
+var trackerId = 'UA-37177114-3'; // maxfalstein.github.io/resume.github.com
 
 (function () {
     var e,
@@ -171,7 +172,7 @@ var run = function() {
                     $('#resume').html(data);
                 }
             });
-        }/* else {
+        } else {
             $.ajax({
                 url: 'views/opt_out.html',
                 dataType: 'html',
@@ -180,7 +181,7 @@ var run = function() {
                     $('#resume').html(data);
                 }
             });
-        }*/
+        }
         return;
     }
 
@@ -554,6 +555,8 @@ var run = function() {
 
 };
 
+/*
+
 if (trackerId) {
   var _gaq = _gaq || [];
   _gaq.push(['_setAccount', trackerId]);
@@ -567,3 +570,19 @@ if (trackerId) {
 }
 
 $(window).bind('error', error);
+
+*/
+
+
+(function(i,s,o,g,r,a,m){
+    i['GoogleAnalyticsObject']=r;
+    i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)
+    },i[r].l=1*new Date();
+    a=s.createElement(o),m=s.getElementsByTagName(o)[0];
+    a.async=1;a.src=g;
+    m.parentNode.insertBefore(a,m)
+})
+(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create', trackerId, 'auto');
+ga('send', 'pageview');
