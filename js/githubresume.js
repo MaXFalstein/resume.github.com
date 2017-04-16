@@ -585,4 +585,5 @@ $(window).bind('error', error);
 })
 (window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 ga('create', trackerId, 'auto');
+ga('require', 'displayfeatures');
 ga('send', 'pageview');
