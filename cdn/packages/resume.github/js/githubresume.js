@@ -1,7 +1,7 @@
 var urlParams = {};
 var username;
 // var trackerId = 'UA-21222559-1'; // resume.github.com or resume.github.io
-var trackerId = 'UA-37177114-3'; // maxfalstein.github.io/resume.github.com
+var trackerId = 'UA-37177114-3'; // maxsaxedesignweb.github.io/resume.github.com
 
 (function () {
     var e,
@@ -34,7 +34,7 @@ $(document).ready(function() {
 
 var error = function() {
     $.ajax({
-        url: 'views/error.html',
+        url: 'cdn/content/views/error.html',
         dataType: 'html',
         success: function(data) {
             var template = data;
@@ -45,7 +45,7 @@ var error = function() {
 
 var home = function() {
     $.ajax({
-        url: 'views/index.html',
+        url: 'cdn/content/views/index.html',
         dataType: 'html',
         success: function(data) {
             var template = data;
@@ -156,7 +156,7 @@ var run = function() {
     if (!starred || starred === 'api_limit' || starred === 'not_found') {
         if (starred === 'api_limit') {
             $.ajax({
-                url: 'views/api_limit.html',
+                url: 'cdn/content/views/api_limit.html',
                 dataType: 'html',
                 success: function(data) {
                     var template = data;
@@ -165,7 +165,7 @@ var run = function() {
             });
         } else if (starred === 'not_found') {
             $.ajax({
-                url: 'views/not_found.html',
+                url: 'cdn/content/views/not_found.html',
                 dataType: 'html',
                 success: function(data) {
                     var template = data;
@@ -174,7 +174,7 @@ var run = function() {
             });
         } else {
             $.ajax({
-                url: 'views/opt_out.html',
+                url: 'cdn/content/views/opt_out.html',
                 dataType: 'html',
                 success: function(data) {
                     var template = data;
@@ -253,6 +253,9 @@ var run = function() {
             var FOURTH_STEP = 50;
             var FIFTH_STEP = 150;
             var EXTRA_POINT_GAIN = 1;
+			var BLOG_EXTRA_POINT_GAIN = 1;
+			var EMAIL_EXTRA_POINT_GAIN = 1;
+			var LOCATION_EXTRA_POINT_GAIN = 1;
 
             var statusScore = data.public_repos * COEF_REPOS
                             + data.public_gists * COEF_GISTS
@@ -264,10 +267,18 @@ var run = function() {
             if (view.earlyAdopter == 1) {
                 statusScore += EXTRA_POINT_GAIN;
             }
-            // - Blog & Email & Location
-            if (view.location && view.location != '' && view.email && view.email != '' && data.blog && data.blog != '') {
-              statusScore += EXTRA_POINT_GAIN;
+            // - Blog
+            if (data.blog && data.blog != '') {
+              statusScore += BLOG_EXTRA_POINT_GAIN;
             }
+			// - Email
+			if (view.email && view.email != '') {
+              statusScore += EMAIL_EXTRA_POINT_GAIN;
+            }
+			// - Location
+			if (view.location && view.location != '') {
+			  statusScore += LOCATION_EXTRA_POINT_GAIN;
+			}
 
             if (statusScore == FIRST_STEP) {
               return 'Inactive GitHub user';
@@ -293,7 +304,7 @@ var run = function() {
             view.website = addHttp + data.blog;
         }
 
-        var resume = (data.type == 'User' ? 'views/resume.html' : 'views/resumeOrgs.html');
+        var resume = (data.type == 'User' ? 'cdn/content/views/resume.html' : 'cdn/content/views/resumeOrgs.html');
         $.ajax({
             url: resume,
             dataType: 'html',
@@ -367,7 +378,7 @@ var run = function() {
         }
 
         $.ajax({
-            url: 'views/job.html',
+            url: 'cdn/content/views/job.html',
             dataType: 'html',
             success: function(response) {
                 languages = sortLanguages(languages, maxLanguages);
@@ -476,7 +487,7 @@ var run = function() {
         sorted.sort(sortByPopularity);
 
         $.ajax({
-            url: 'views/contrib.html',
+            url: 'cdn/content/views/contrib.html',
             dataType: 'html',
             success: function(response) {
                 if (sorted.length > 0) {
@@ -517,7 +528,7 @@ var run = function() {
         });
 
         $.ajax({
-            url: 'views/org.html',
+            url: 'cdn/content/views/org.html',
             dataType: 'html',
             success: function(response) {
                 var now = new Date().getFullYear();
